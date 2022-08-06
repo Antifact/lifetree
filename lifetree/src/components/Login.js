@@ -1,6 +1,9 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Login = ({loginUser}) => {
+
+  const redirect = useNavigate();
 
   const initialFormData = {
     username: "",
@@ -10,11 +13,12 @@ const Login = ({loginUser}) => {
   const [formData, setFormData] = useState(initialFormData)
 
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     // console.log("submitted")
     // console.log(formData)
-    loginUser(formData.username)
-    setFormData(initialFormData)
+    loginUser(formData.username);
+    setFormData(initialFormData);
+    redirect("/");
   }
 
   const handleFormData = (e) => {
