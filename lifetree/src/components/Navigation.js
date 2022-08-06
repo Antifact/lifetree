@@ -1,11 +1,33 @@
-const Navigation = () => {
+import { Link, useNavigate } from 'react-router-dom';
+
+const Navigation = ({loggedInUser, loginUser}) => {
+
+  const redirect = useNavigate();
+
+  const logoutUser = (e) => {
+    e.preventDefault();
+    loginUser("");
+    redirect("/");
+  }
+
   return (
     <nav>
-      <a href="/">Home</a>
-      <a href="/">About</a>
-      <a href="/">Login</a>
-      <a href="/">Register</a>
-      <a href="/">Admin Panel</a>
+      <Link to="/">Home</Link>
+      <Link to="/about">About</Link>
+      { loggedInUser ?
+        <>
+          <Link to="/posts/new">New Post</Link>
+          {loggedInUser}
+          <Link to="/" onClick={logoutUser}>Logout</Link>
+        </> 
+      :
+        <>
+          <Link to="/login">Login</Link>
+          <Link to="/">Register</Link>
+          Hello, Guest
+        </>
+
+      }
     </nav>
   )
 }
