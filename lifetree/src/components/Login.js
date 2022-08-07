@@ -1,49 +1,59 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import { Button, Form } from 'react-bootstrap';
+import axios from 'axios';
 
-const Login = ({loginUser}) => {
+const Login = () => {
 
-  const redirect = useNavigate();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
 
-  const initialFormData = {
-    username: "",
-    password: ""
-  }
-  
-  const [formData, setFormData] = useState(initialFormData)
-
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // console.log("submitted")
-    // console.log(formData)
-    loginUser(formData.username);
-    setFormData(initialFormData);
-    redirect("/");
-  }
 
-  const handleFormData = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.id]: e.target.value
-    })
+    try {
+      const config = {
+        headers: {
+          "Content-type": "application/json",
+        },
+      };
+
+      const { data } = await axios.post('/users/login',
+      {
+        username,
+        password
+      },
+      config
+      );
+
+      console.log(data);
+      localStorage.setItem('userInfo', JSON.stringify(data));
+
+    } catch (error) {
+      setError(error.response.data.message)
+    }
   }
 
   return (
-    <>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Username:</label>
-          <input type="text" name="username" id="username" value={formData.username} onChange={handleFormData} />
-        </div>
+      <div className="loginContainer">
+        <Form onSubmit={handleSubmit}>
+          <Form.Group controlId="formUsername">
+            <Form.Label>Username</Form.Label>
+            <Form.Control type="username" value={username} 
+            placeholder="Enter Username" onChange={(e) => setUsername(e.target.value)}/>
+          </Form.Group>
 
-        <div>
-          <label htmlFor="password">Password:</label>
-          <input type="password" name="password" id="password" value={formData.password} onChange={handleFormData}/>
-        </div>
+          <Form.Group controlId="formPassword">
+            <Form.Label>Password</Form.Label>
+            <Form.Control type="password" value={password} 
+            placeholder="Enter Password" onChange={(e) => setPassword(e.target.value)}/>
+          </Form.Group>
 
-          <input type="submit" value="Login"/>
-      </form>
-    </>
+          <Button varient="primary" type="submit">
+            Login
+          </Button>
+        </Form>
+      </div>
   )
 }
 

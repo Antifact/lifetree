@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import Navigation from './Navigation';
 import About from './About';
 import Login from './Login';
+import Register from './Register';
 import Posts from './Posts';
 import ViewPost from './ViewPost';
 import BadLink from './BadLink';
 import CreatePost from './CreatePost';
-import posts from '../data/posts.json';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
+// import getPosts from '../services/postsServices';
+import axios from 'axios';
 
 const App = () => {
   const [loggedInUser, setLoggedInUser] = useState("");
@@ -29,17 +31,22 @@ const App = () => {
     )
   }
 
-  useEffect(
-    () => {
-      setBlogPosts(posts)
-    }
-    ,
-    []
+  const fetchPosts = async () => {
+    const { data } = await axios.get('/posts');
+
+    setBlogPosts(data);
+  }
+
+  console.log(blogPosts);
+
+  useEffect(() => {
+    fetchPosts();
+    }, []
   )
 
   return (
     <div>
-      <h1>Lifetree</h1>
+      <h1>lifetree</h1>
       {/* { !loggedInUser ?
         <Login loginUser={loginUser} />
         :
@@ -67,6 +74,7 @@ const App = () => {
           </Route>
 
           <Route path="login" element={<Login loginUser={loginUser} />} />
+          <Route path="register" element={<Register />} />
           <Route path="about" element={<About />} />
 
           <Route path="*" element={<BadLink />} />
