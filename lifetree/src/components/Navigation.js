@@ -1,30 +1,23 @@
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
+import Navbar from 'react-bootstrap/Navbar';
+import { Link } from 'react-router-dom';
 
-const Navigation = ({loggedInUser, loginUser}) => {
-
-  const redirect = useNavigate();
-
-  const logoutUser = (e) => {
-    e.preventDefault();
-    loginUser("");
-    redirect("/");
-  }
-
+const Navigation = () => {
   return (
-    <nav>
-      <Link to="/">Home</Link>
-      <Link to="/about">About</Link>
-          <Link to="/posts/new">New Post</Link>
-          {loggedInUser}
-          <Link to="/" onClick={() => {
-            localStorage.removeItem('userInfo');
-            redirect('/');
-
-          }}>Logout</Link>
-          <Link to="/login">Login</Link>
-          <Link to="/register">Register</Link>
-    </nav>
+    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+      <Container>
+        <Navbar.Brand><Nav.Link as={Link} to="/" >Lifetree</Nav.Link></Navbar.Brand>
+          <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse id="responsive-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link as={Link} to="/" >Home</Nav.Link>
+                <Nav.Link as={Link} to="/about" >About</Nav.Link>
+              </Nav>
+            </Navbar.Collapse>
+      </Container>
+    </Navbar>
   )
 }
 

@@ -2,10 +2,10 @@ import React from 'react';
 
 const About = () => {
   return (
-    <>
-      <p>Lifetree is cool</p>
-    </>
-  )
-}
+    <div className='about'>
+      <h3>About</h3>
+    </div>
+  );
+};
 
 export default About;

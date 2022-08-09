@@ -1,35 +1,43 @@
+// import express for running server
 const express = require('express');
-const posts = require('../src/data/posts');
-const app = express();
+
+// define the app by using express
+const app = express(); 
+
+// import mongoose to connect to database
+const mongoose = require('mongoose');
+
+// import the app's routes from the respective file
+const postRoutes = require('./routes/postRoutes');
+
+// middleware for logging requests and send response.
+// invoke next() to continue with requests/responses
+app.use(express.json());
+
+app.use( (req, res, next) => {
+  console.log(req.path, res.method);
+  next();
+})
+
+// import dotenv to use global process variables instead 
+// of hardcoding URLs etc.
 const dotenv = require('dotenv');
-const connectDB = require('./config/db');
-const userRoutes = require('./routes/user-routes');
-const { notFound, errorHandler } = require('./middleware/error');
 
 dotenv.config();
-connectDB();
 
-app.use(express.json())
+// express routes to receive data
+app.use('/posts', postRoutes);
 
-app.get('/', (req, res) => {
-  res.send('API IS RUNNING AGAIN YAYAYA');
-});
-
-app.get('/posts', (req, res) => {
-  res.json(posts);
-});
-
-// app.get('/posts/:id/', (req, res) => {
-//   const post = posts.find((p) => p.id === req.params.id);
-//   res.send(post);
-// });
-
-app.use('/users', userRoutes);
-
-app.use(notFound);
-app.use(errorHandler);
+// connect to mongodb
+mongoose.connect(process.env.DB_URI)
+  .then(() => {})
+  .catch((error) => {
+    console.log(error);
+  })
 
 
+// use port specified in dotenv file, otherwise use 4000
 const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, console.log(`Server started on ${PORT}`));
+// make the express app ready to receive requests
+app.listen(PORT, console.log(`Server started on ${PORT} and connected to DB!`));
