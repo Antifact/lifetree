@@ -1,0 +1,97 @@
+/* the font we'll use for main content text */
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+/* layout for most pages */
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  background-color: #BEEF9E;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.content-wrapper {
+  margin-top: 3.5rem;
+}
+
+.post-details {
+  border-radius: 10px;
+  margin: auto;
+  padding: 20px;
+  background-color: #FFF;
+  width: 50%;
+  align-items: center;
+}
+
+.post-details h2 {
+  font-size: 25px;
+  font-weight: 600;
+  border-bottom: 1px solid #C7C6C6;
+}
+
+.post-content {
+  margin-top: 20px;
+}
+
+.post-date {
+  float: right;
+  font-size: 14px;
+  color: grey;
+}
+
+.form-container {
+  width: 50%;
+  margin: auto;
+}
+
+.form-wrapper {
+  background: lightblue;
+  padding: 20px;
+}
+
+/* Navbar Styling
+I was going to do this myself but turns out bootstrap is better, who would have thought!
+
+.navbar {
+  overflow: hidden;
+  background: #212529;
+}
+
+.navbar .brand {
+  font-size: 25px;
+  color: #BEEF9E;
+}
+
+.navbar ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.navbar li {
+  display: inline;
+}
+
+.navbar a {
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 14px;
+  text-decoration: none;
+  font-size: 18px;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+}
+
+.navbar.mobile {
+  position: relative;
+}
+
+.navbar.mobile a, .navbar.mobile li {
+  float: none;
+  display: inline;
+  text-align: left;
+}
+
+*/

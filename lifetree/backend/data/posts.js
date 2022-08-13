@@ -1,3 +1,5 @@
+// hard-coded posts that were used for testing backend api
+
 const posts = [
   {
     id: "1",

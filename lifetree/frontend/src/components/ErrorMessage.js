@@ -1,7 +1,8 @@
 import React from "react";
 import { Alert } from "react-bootstrap";
 
-const Error = ({ variant = "danger", children }) => {
+// this is how we can display errors. 
+const ErrorMessage = ({ variant = "info", children }) => {
   return (
     <Alert variant={variant} style={{ fontSize: 20 }}>
       <strong>{children}</strong>
@@ -9,4 +10,4 @@ const Error = ({ variant = "danger", children }) => {
   );
 };
 
-export default Error;
+export default ErrorMessage;
