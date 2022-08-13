@@ -1,5 +1,6 @@
 // import express for running server
 const express = require('express');
+const path = require('path');
 
 // define the app by using express
 const app = express();
@@ -24,12 +25,21 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get('/', (req, res) => {
-  res.send('api running')
-});
-
 app.use('/posts', postRoutes);
 app.use('/users', userRoutes);
+
+__dirname = path.resolve();
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/build')));
+
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, '..', 'frontend', 'build', 'index.html'))
+  });
+} else {
+  app.get('/', (req, res) => {
+    res.send('api running')
+  });
+}
 
 app.get('/posts/:id', (req, res) => {
   const post = posts.find((p) => p._id === req.params.id);
