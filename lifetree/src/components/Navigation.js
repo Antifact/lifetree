@@ -8,14 +8,24 @@ import { Link } from 'react-router-dom';
 const Navigation = () => {
   // use state to ensure that the user is logged in
   const [user, setUser] = useState([]);
+  const [admin, setAdmin] = useState([]);
 
   useEffect(() => {
     // check to see if the user has logged in by checking their localstorage
     const user = JSON.parse(localStorage.getItem('userInfo'));
+    const admin = JSON.parse(localStorage.getItem('userInfo'))['admin'];
+
+    if (admin) {
+      setAdmin(admin);
+      console.log(admin);
+    } else {
+      setAdmin(null);
+    }
 
     // if the user does have localstorage item, set them to 'user', otherwise nothing
     if (user) {
       setUser(user);
+      console.log(user)
     } else {
       setUser(null);
     }
@@ -41,7 +51,7 @@ const Navigation = () => {
               <>
                 <Nav.Link as={Link} to="/login">Hello, {user.username}!</Nav.Link>
                 <Nav.Link as={Link} to="/new" >New Post</Nav.Link>
-
+                {admin && <Nav.Link as={Link} to='/admin'>Admin</Nav.Link>}
               
                   <Nav.Link as={Link} to="/" onClick={() => {localStorage.removeItem('userInfo')}}>
                     Logout
