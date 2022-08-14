@@ -13,6 +13,7 @@ import ViewPost from './components/ViewPost';
 import BadLink from './pages/BadLink';
 import AdminPosts from './pages/AdminPosts';
 import AdminUsers from './pages/AdminUsers';
+import Footer from './components/Footer';
 
 const App = () => {
   
@@ -66,7 +67,9 @@ const App = () => {
             element= { <BadLink /> } />
           </Routes>
         </div>
-      </Router> 
+      </Router>
+
+      <Footer /> 
     </div>
   );
 }
