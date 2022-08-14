@@ -7,9 +7,12 @@ import Login from './pages/Login';
 import Register from './pages/Register';
 import Navigation from './components/Navigation';
 import NewPost from './components/NewPost';
+import AdminDash from './components/AdminDash';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import ViewPost from './components/ViewPost';
 import BadLink from './pages/BadLink';
+import AdminPosts from './pages/AdminPosts';
+import AdminUsers from './pages/AdminUsers';
 
 const App = () => {
   
@@ -41,6 +44,18 @@ const App = () => {
             <Route 
             path='/new'
             element= { <NewPost /> } />
+
+            <Route 
+            path='/admin'
+            element= { <AdminDash /> } />
+
+            <Route 
+            path='/admin/posts'
+            element= { <AdminPosts /> } />
+
+            <Route 
+            path='/admin/users'
+            element= { <AdminUsers /> } />
 
             <Route 
             path='/posts/:id'

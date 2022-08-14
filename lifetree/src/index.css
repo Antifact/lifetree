@@ -52,6 +52,15 @@ body {
   padding: 20px;
 }
 
+.buttons {
+  padding: 10px;
+  display: inline;
+}
+
+.btn-left {
+  float: left;
+}
+
 /* Navbar Styling
 I was going to do this myself but turns out bootstrap is better, who would have thought!
 

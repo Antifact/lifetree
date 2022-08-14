@@ -13,19 +13,26 @@ const Navigation = () => {
   useEffect(() => {
     // check to see if the user has logged in by checking their localstorage
     const user = JSON.parse(localStorage.getItem('userInfo'));
-    const admin = JSON.parse(localStorage.getItem('userInfo'))['admin'];
 
-    if (admin) {
-      setAdmin(admin);
-      console.log(admin);
-    } else {
-      setAdmin(null);
-    }
+    // if (admin) {
+    //   setAdmin(admin);
+    //   console.log(admin);
+    // } else {
+    //   setAdmin(null);
+    // }
 
     // if the user does have localstorage item, set them to 'user', otherwise nothing
     if (user) {
+      const admin = JSON.parse(localStorage.getItem('userInfo'))['admin'];
       setUser(user);
-      console.log(user)
+
+      if (admin) {
+        setAdmin(admin);
+        // console.log(admin);
+      } else {
+        setAdmin(null);
+      }
+      // console.log(user)
     } else {
       setUser(null);
     }

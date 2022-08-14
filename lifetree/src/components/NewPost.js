@@ -1,5 +1,5 @@
 // imports
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Form, Button } from 'react-bootstrap';
 import Error from './ErrorMessage';
@@ -10,15 +10,35 @@ const NewPost = () => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [error, setError] = useState(null);
+  const [admin, setAdmin] = useState([]);
+  const [user, setUser] = useState([]);
 
-  // this is meant to redirect the user if they are not logged in
-  // it checks to see if the user has their userInfo in the localstorage
-  // and if not, redirects. but it doesn't do it
-  const user = localStorage.getItem('userInfo');
   const redirect = useNavigate();
-  if (!user) {
+
+  useEffect(() => {
+
+  const user = JSON.parse(localStorage.getItem('userInfo'));
+
+  // this redirects the user if they are not logged in.
+  // it checks to see if the user has their userInfo in the localstorage
+  // and then checks to see if they are admin. if not, then  
+  // it redirects the user.
+  // this is not the best way to do it but it was an easy fix for the time being
+  if (user) {
+    const admin = JSON.parse(localStorage.getItem('userInfo'))['admin'];
+    setUser(user);
+
+    if (admin) {
+      setAdmin(admin);
+    } else {
+      setAdmin(null);
+      redirect('/');
+    }
+  } else {
+    setUser(null);
     redirect('/');
-  };
+  }
+}, []);
 
   // function to handle the submitting of the form.
   // stop the default behaviour of submitting
