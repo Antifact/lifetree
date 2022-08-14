@@ -57,7 +57,7 @@ const Navigation = () => {
             {user ? (
               <>
                 <Nav.Link as={Link} to="/login">Hello, {user.username}!</Nav.Link>
-                <Nav.Link as={Link} to="/new" >New Post</Nav.Link>
+                {admin && <Nav.Link as={Link} to="/new" >New Post</Nav.Link>}
                 {admin && <Nav.Link as={Link} to='/admin'>Admin</Nav.Link>}
               
                   <Nav.Link as={Link} to="/" onClick={() => {localStorage.removeItem('userInfo')}}>
