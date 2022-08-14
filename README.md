@@ -1,5 +1,13 @@
 # Lifetree Blog
 
+[GitHub](https://github.com/Antifact/lifetree)
+
+[Netlify](https://lifetree-staging.netlify.app/)
+
+The deployed site does not work.
+
+To use this app, as it does not want to deploy, please use two separate terminals. One to start the backend, in the `lifetree/backend` folder and run `nodemon app.js`. The other for frontend, in `src` to run `npm start`.
+
 ## An updating blog for publishing company "Lifetree"
 
 ### Overview
@@ -18,3 +26,40 @@ Mongoose is an Object Data Modeling (ODM) library for MongoDB and Node.js. It ma
 * **Express JS** is a web-based application framework work with Node JS, It helps to build web apps and RESTful APIs.
 * **React** is a JavaScript library created by Facebook. React is a User Interface (UI) library. React is a tool for building UI components
 * **Node JS** is a free JavaScript run-time environment. It executes JavaScript code outside of a browser. It is available for macOS, Windows, Linux, and Unix.
+
+### Trello
+
+I did not get to use this as much as I'd like to, as my partner disppeared and I never heard back from him, so I was left to do it on my own. It's fine, and possible to complete alone
+but it would have been nice to have someone to work with and I probably would have enjoyed this a bit more.
+
+![Trello](docs/trello.png "Trello.")
+
+![Discord](docs/discord1.png "discord")
+
+![Discord2](docs/discord2.png "discord 2")
+
+### Screenshots
+
+The Home Page
+
+![Home](docs/home.png "Home Page")
+
+The navbar displays links depending on the user. If the user is admin, display the admin link
+
+![Admin Navbar](docs/admin_navbar.png "Admin Navbar")
+
+If the user is not logged in, show login and register links
+
+![Navbar](docs/no_user_navbar.png "No User Logged in Navbar")
+
+If the user is logged in but not admin, just display the new post and logout links
+
+![No Admin Navbar](docs/no_admin_navbar.png "Navbar for user that isn't admin")
+
+Login Page
+
+![Login](docs/login.png "Login Page")
+
+Register Page Error Handling
+
+![Register Page](docs/register_error_handling.png "Register Page Error Handling")
